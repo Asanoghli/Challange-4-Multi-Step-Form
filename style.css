@@ -112,19 +112,23 @@ p {
   background-color: #3a7dff;
   color: white;
 }
-.in-process.progress-step > .circle-line{
-    background-color: var(--CircleAndLineDefaultColor);
+.in-process.progress-step > .circle-line {
+  background-color: var(--CircleAndLineDefaultColor);
 }
-.in-process > .circle-line::before{
-    width: 50%;
-    height: 100%;
-    background-color: #3a7dff;
-    position: absolute;
-    z-index: -1;
-    content: '';
-    border-radius: 1rem;
-    left: 0;
-
+.in-process > .circle-line::before {
+  width: 50%;
+  height: 100%;
+  background-color: #3a7dff;
+  position: absolute;
+  z-index: -1;
+  content: "";
+  border-radius: 1rem;
+  left: 0;
+}
+.completed.progress-step > .circle,
+.completed.progress-step >.circle-line {
+  background-color: #3a7dff;
+  color: white;
 }
 /* .in-process {
   position: relative;
