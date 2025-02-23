@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", serif;
+}
+
+:root {
+  --ContainerBackgroundColor: #9ab3d2;
+  --FormBackgroundColor: white;
+  --CircleBackgroundColor : #3A7DFF;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--ContainerBackgroundColor);
+  height: 100dvh;
+}
+.form {
+  width: 35%;
+  height: 80%;
+  border-radius: 3rem;
+  background-color: var(--FormBackgroundColor);
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 2rem 4rem;
+}
+
+/* Header Here */
+.form-header { 
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.form-header-texts{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.form-header-texts h1,p{ 
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    text-align: center;
+}
+.form-header-texts p {
+    opacity: 0.5;
+    color: black;
+    line-height: 1.8rem;
+}
+.form-header-progress-wrapper { 
+    position: relative;
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-header-progress{  
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    gap: .4rem;
+}
+.circle {
+    display: flex;
+    width: 1rem;
+    height: 1rem;
+    background: green;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: var(--CircleBackgroundColor);
+    color: white;
+}
+.circle-line{
+    background-color: var(--CircleBackgroundColor);
+    height: .3rem;
+    width: 20%;
+    display: block;
+    border-radius: 1rem;
+}
