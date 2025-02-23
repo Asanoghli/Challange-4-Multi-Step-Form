@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 * {
   padding: 0;
@@ -10,7 +10,9 @@
 :root {
   --ContainerBackgroundColor: #9ab3d2;
   --FormBackgroundColor: white;
-  --CircleBackgroundColor : #3A7DFF;
+  --CircleBackgroundColor: #3a7dff;
+  --CircleAndLineDefaultColor: #eff0f6;
+  --CircleTextDefaultColor: black;
 }
 .container {
   display: flex;
@@ -32,63 +34,108 @@
 }
 
 /* Header Here */
-.form-header { 
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+.form-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
-.form-header-texts{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: .5rem;
+.form-header-texts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.form-header-texts h1,p{ 
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    text-align: center;
+.form-header-texts h1,
+p {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  text-align: center;
 }
 .form-header-texts p {
-    opacity: 0.5;
-    color: black;
-    line-height: 1.8rem;
+  opacity: 0.5;
+  color: black;
+  line-height: 1.8rem;
 }
-.form-header-progress-wrapper { 
-    position: relative;
-    width: 100%;
-    height: 3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.form-header-progress-wrapper {
+  position: relative;
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.form-header-progress{  
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    align-items: center;
-    gap: .4rem;
+.form-header-progress {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  gap: 0.4rem;
+}
+.progress-step {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
 }
 .circle {
-    display: flex;
-    width: 1rem;
-    height: 1rem;
-    background: green;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    border-radius: 50%;
-    background-color: var(--CircleBackgroundColor);
-    color: white;
+  display: flex;
+  width: 1rem;
+  height: 1rem;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 50%;
+  background-color: var(--CircleAndLineDefaultColor); /* Circle Color*/
+  color: var(--CircleTextDefaultColor);
 }
-.circle-line{
-    background-color: var(--CircleBackgroundColor);
-    height: .3rem;
-    width: 20%;
-    display: block;
+.circle-line {
+  background-color: var(--CircleAndLineDefaultColor); /* Line Color*/
+  height: 0.3rem;
+  width: 100%;
+  display: block;
+  border-radius: 1rem;
+  position: relative;
+  z-index: 1000;
+}
+
+.last-step {
+  width: fit-content;
+}
+.in-process.progress-step > .circle {
+  background-color: #3a7dff;
+  color: white;
+}
+.in-process.progress-step > .circle-line{
+    background-color: var(--CircleAndLineDefaultColor);
+}
+.in-process > .circle-line::before{
+    width: 50%;
+    height: 100%;
+    background-color: #3a7dff;
+    position: absolute;
+    z-index: -1;
+    content: '';
     border-radius: 1rem;
+    left: 0;
+
 }
+/* .in-process {
+  position: relative;
+}
+.in-process::before {
+  display: block;
+  content: "";
+  width: 40%;
+  position: absolute;
+  background-color: #3a7dff;
+  height: .3rem;
+  border-radius: 1rem;
+  left: 0;
+} */
