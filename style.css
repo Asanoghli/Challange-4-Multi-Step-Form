@@ -26,15 +26,14 @@
   height: 100dvh;
 }
 .form {
-  width: 35%;
-  height: 80%;
+  max-width: 35%;
   border-radius: 3rem;
   background-color: var(--FormBackgroundColor);
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  padding: 2rem 4rem;
+  padding: 2rem 3.4rem;
   gap: 2.5rem;
 }
 
@@ -180,7 +179,7 @@ p {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    gap: 1rem;
+    gap: 1.7rem;
 }
 .contact-input-group { 
     display: flex;
@@ -206,4 +205,14 @@ p {
 }
 .input-image{
     width: 15%;
+}
+.btn-next-step{
+    align-self: flex-end;
+    background-color: var(--CircleBackgroundColor);
+    color: white;
+    border: none;
+    padding: 1rem 2.4rem;
+    border-radius: 2rem;
+    font-weight: 500;
+    font-size: 1rem;
 }
