@@ -13,6 +13,10 @@
   --CircleBackgroundColor: #3a7dff;
   --CircleAndLineDefaultColor: #eff0f6;
   --CircleTextDefaultColor: black;
+  --HeaderTextsOpacity: 0.5;
+  --HeaderTextsLineHeight : 1.8rem;
+  --HeaderTextsFontWeight : 500;
+  --LightShadowForContainerAndInputs : 0 0 .5rem rgba(0, 0,0, 0.1);
 }
 .container {
   display: flex;
@@ -59,6 +63,7 @@ p {
   opacity: 0.5;
   color: black;
   line-height: 1.8rem;
+  font-weight: 500;
 }
 .form-header-progress-wrapper {
   position: relative;
@@ -67,6 +72,9 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+
 }
 
 .form-header-progress {
@@ -131,23 +139,71 @@ p {
   background-color: #3a7dff;
   color: white;
 }
-/* .in-process {
-  position: relative;
-}
-.in-process::before {
-  display: block;
-  content: "";
-  width: 40%;
-  position: absolute;
-  background-color: #3a7dff;
-  height: .3rem;
-  border-radius: 1rem;
-  left: 0;
-} */
-.content{
+
+.content-wrapper{
     width: 100%;
-    padding: 1.2rem 2rem;
-    height: 100%;
+    padding: 2rem 2rem;
     box-shadow: 0 0 .5rem rgba(0, 0,0, 0.1);
     border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+.content{
+    display: flex;
+}
+/* CONTACT PAGE*/
+
+.contact-details-wrapper { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 2rem;
+}
+.contact-details-info{
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+}
+.contact-details-info > p{
+    line-height: var(--HeaderTextsLineHeight);
+    color: black;
+    font-weight: var(--HeaderTextsFontWeight);
+    opacity: var(--HeaderTextsOpacity);
+    text-align: start;
+}
+.contact-form-wrapper{
+    width: 100%;
+}
+.contact-form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+}
+.contact-input-group { 
+    display: flex;
+    gap: .8rem;
+    flex-direction: column;
+}
+.contact-input-group > label{
+    font-weight: 600;
+}
+.contact-input{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    box-shadow: var(--LightShadowForContainerAndInputs);
+    
+}
+.contact-input > input{
+    border: none;
+    outline: none;
+}
+.input-image{
+    width: 15%;
 }
