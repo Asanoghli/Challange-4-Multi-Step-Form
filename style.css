@@ -14,9 +14,9 @@
   --CircleAndLineDefaultColor: #eff0f6;
   --CircleTextDefaultColor: black;
   --HeaderTextsOpacity: 0.5;
-  --HeaderTextsLineHeight : 1.8rem;
-  --HeaderTextsFontWeight : 500;
-  --LightShadowForContainerAndInputs : 0 0 .5rem rgba(0, 0,0, 0.1);
+  --HeaderTextsLineHeight: 1.8rem;
+  --HeaderTextsFontWeight: 500;
+  --LightShadowForContainerAndInputs: 0 0 0.5rem rgba(0, 0, 0, 0.1);
 }
 .container {
   display: flex;
@@ -26,14 +26,14 @@
   height: 100dvh;
 }
 .form {
-  max-width: 35%;
+  max-width: 50%;
   border-radius: 3rem;
   background-color: var(--FormBackgroundColor);
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  padding: 2rem 3.4rem;
+  padding: 2rem 6rem;
   gap: 2.5rem;
 }
 
@@ -73,7 +73,6 @@ p {
   align-items: center;
   flex-direction: column;
   gap: 2rem;
-
 }
 
 .form-header-progress {
@@ -102,6 +101,7 @@ p {
   border-radius: 50%;
   background-color: var(--CircleAndLineDefaultColor); /* Circle Color*/
   color: var(--CircleTextDefaultColor);
+  cursor: pointer;
 }
 .circle-line {
   background-color: var(--CircleAndLineDefaultColor); /* Line Color*/
@@ -134,85 +134,208 @@ p {
   left: 0;
 }
 .completed.progress-step > .circle,
-.completed.progress-step >.circle-line {
+.completed.progress-step > .circle-line {
   background-color: #3a7dff;
   color: white;
 }
 
-.content-wrapper{
-    width: 100%;
-    padding: 2rem 2rem;
-    box-shadow: 0 0 .5rem rgba(0, 0,0, 0.1);
-    border-radius: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
+.content-wrapper {
+  width: 100%;
+  padding: 2rem 2rem;
+  /* box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1); */
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
-.content{
-    display: flex;
+.content {
+  display: flex;
 }
 /* CONTACT PAGE*/
 
-.contact-details-wrapper { 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-    gap: 2rem;
+.contact-details-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 2rem;
 }
-.contact-details-info{
-    display: flex;
-    flex-direction: column;
-    gap: .7rem;
+.contact-details-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
 }
-.contact-details-info > p{
-    line-height: var(--HeaderTextsLineHeight);
-    color: black;
-    font-weight: var(--HeaderTextsFontWeight);
-    opacity: var(--HeaderTextsOpacity);
-    text-align: start;
+.contact-details-info > p {
+  line-height: var(--HeaderTextsLineHeight);
+  color: black;
+  font-weight: var(--HeaderTextsFontWeight);
+  opacity: var(--HeaderTextsOpacity);
+  text-align: start;
 }
-.contact-form-wrapper{
+.contact-form-wrapper {
+  width: 100%;
+}
+.contact-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1.7rem;
+}
+.contact-input-group {
+  display: flex;
+  gap: 0.8rem;
+  flex-direction: column;
+}
+.contact-input-group > label {
+  font-weight: 600;
+}
+.contact-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  box-shadow: var(--LightShadowForContainerAndInputs);
+}
+.contact-input > input {
+  border: none;
+  outline: none;
+  height: 100%;
+  padding: 0.2rem 0.5rem;
+}
+.input-image {
+  width: 13%;
+}
+.btn-next-step {
+  align-self: flex-end;
+  background-color: var(--CircleBackgroundColor);
+  color: white;
+  border: none;
+  padding: 1rem 2.4rem;
+  border-radius: 2rem;
+  font-weight: 500;
+  font-size: 1rem;
+}
+/* Small */
+@media screen and (max-width: 576px) {
+  /* .form-header-texts h1 {
+    font-size: 1.5rem;
+  }
+  .form-header-texts p {
+    font-size: 0.8rem;
+    line-height: 1.3rem;
+  } */
+  .container {
+    padding: 0;
+    height: 100%;
     width: 100%;
-}
-.contact-form{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 1.7rem;
-}
-.contact-input-group { 
+    overflow: hidden;
+  }
+  .form {
+    max-width: 100%;
+    min-width: 100%;
+    /* padding: 1.5rem 0.8rem; */
+    padding: 1rem 0;
+    border-radius: 0;
+  }
+  .contact-form {
     display: flex;
-    gap: .8rem;
     flex-direction: column;
+  }
+  .content-wrapper {
+    padding: 0 0.3rem;
+    box-shadow: none;
+  }
+  .circle {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+  /* Contact Form */
+  .input-image {
+    max-width: 1.5rem;
+  }
 }
-.contact-input-group > label{
-    font-weight: 600;
-}
-.contact-input{
+/* Medium */
+@media screen and (min-width: 577px) and (max-width: 768px) {
+  .container {
+    width: 100%;
+    padding: 0;
+    height: 100%;
+  }
+  .form {
+    max-width: 100%;
+    width: 100%;
+    border-radius: 0;
+    padding: 0;
+  }
+  .form-header-texts {
+    padding: 0 1rem;
+  }
+  .content-wrapper {
+    box-shadow: none;
+    padding: 0.3rem;
+  }
+  .contact-form {
+    flex-direction: column;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    border-radius: 2rem;
-    box-shadow: var(--LightShadowForContainerAndInputs);
-    
+  }
+  .input-image {
+    width: 1.5rem;
+  }
 }
-.contact-input > input{
-    border: none;
-    outline: none;
+/* Desktop */
+@media screen and (min-width: 769px) and (max-width: 992px) {
+  .form {
+    max-width: 80%;
+  }
+  .input-image {
+    width: 1.5rem;
+  }
 }
-.input-image{
-    width: 15%;
+/* Large Desktops */
+@media screen and (min-width:993px) and (max-width: 1200px) {
+  .form {
+    max-width: 70%;
+  }
+  .input-image {
+    width:1.5rem;
+  }
 }
-.btn-next-step{
-    align-self: flex-end;
-    background-color: var(--CircleBackgroundColor);
-    color: white;
-    border: none;
-    padding: 1rem 2.4rem;
-    border-radius: 2rem;
-    font-weight: 500;
-    font-size: 1rem;
+@media screen and (min-width:1201px) and (max-width:1400px){
+  .form {
+    max-width: 60%;
+  }
+  .input-image {
+    width:1.5rem;
+  }
 }
+/* @media screen and (min-width: 741px) and (max-width: 1080px) {
+  .container {
+    padding: 2rem 1rem;
+    height: 100%;
+  }
+  .form {
+    max-width: 100%;
+  }
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+  }
+  .input-image {
+    max-width: 5%;
+  }
+}
+@media screen and (min-width: 1080px) and (max-width: 1280px) {
+  .form {
+    min-width: 90%;
+  }
+  .input-image {
+    width: 8%;
+  }
+}
+@media screen and (min-width: 1281px) and (max-width: 1650px) {
+  .form {
+    min-width: 50%;
+  }
+} */
