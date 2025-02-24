@@ -21,27 +21,27 @@
         <div class="content-wrapper">
             <div class="form-header-progress-wrapper">
                 <div class="form-header-progress">
-                    <div class="progress-step completed">
+                    <div class="progress-step in-process">
                         <span class="circle">1</span>
                         <span class="circle-line"></span>
                     </div>
-                    <div class="progress-step in-process">
+                    <div class="progress-step ">
                         <span class="circle">2</span>
                         <span class="circle-line"></span>
                     </div>
 
-                    <div class="progress-step">
+                    <div class="progress-step ">
                         <span class="circle">3</span>
                         <span class="circle-line"></span>
                     </div>
-                    <div class="progress-step last-step">
+                    <div class="progress-step last-step ">
                         <span class="circle">4</span>
                     </div>
                 </div>
                 <hr class="divider"/>
             </div>
             <div class="content">
-                <div class="contact-details-wrapper hidden">
+                <div class="contact-details-wrapper ">
                     <div class="contact-details-info">
                         <h3>Contact Details</h3>
                         <p>
@@ -52,41 +52,41 @@
                     <div class="contact-form-wrapper">
                         <form action="" class="contact-form">
                             <div class="contact-input-group">
-                                <label for="">Name</label>
+                                <label for="name">Name</label>
                                 <div class="contact-input">
-                                    <input placeholder="Levan Asanoghli" type="text" class="input"/>
+                                    <input id="name" placeholder="Levan Asanoghli" type="text" class="input"/>
                                     <img class="input-image" src="imgs/user.png" alt="">
                                 </div>
-                                <span class="error-message">Incorrect Firstname</span>
+                                <span class="error-message name-error hidden">Incorrect Name</span>
                             </div>
                             <div class="contact-input-group">
-                                <label for="">Email</label>
+                                <label for="email">Email</label>
                                 <div class="contact-input">
-                                    <input placeholder="asanoghli@outlook.com" type="text" class="input"/>
+                                    <input id="email" placeholder="asanoghli@outlook.com" type="text" class="input"/>
                                     <img class="input-image" src="imgs/email.png" alt="">
                                 </div>
-                                <span class="error-message">Incorrect Firstname</span>
+                                <span class="error-message email-error hidden">Invalid Email</span>
                             </div>
                             <div class="contact-input-group">
-                                <label for="">Phone Number</label>
+                                <label for="phone">Phone Number</label>
                                 <div class="contact-input">
-                                    <input placeholder="(123) 456-7890" type="text" class="input"/>
+                                    <input id="phone" placeholder="(123) 456-7890" type="text" class="input"/>
                                     <img class="input-image" src="imgs/phone.png" alt="">
                                 </div>
-                                <span class="error-message">Incorrect Firstname</span>
+                                <span class="error-message phone-error hidden">Incorrect Firstname</span>
                             </div>
                             <div class="contact-input-group">
-                                <label for="">Location</label>
+                                <label for="location">Location</label>
                                 <div class="contact-input">
-                                    <input placeholder="Gori" type="text" class="input"/>
+                                    <input id="location" placeholder="Gori" type="text" class="input"/>
                                     <img class="input-image" src="imgs/location.png" alt="">
                                 </div>
-                                <span class="error-message">Incorrect Firstname</span>
+                                <span class="error-message location-error hidden">Incorrect Firstname</span>
                             </div>
                         </form>
                     </div>
                 </div>
-                <div class="home-details-wrapper">
+                <div class="home-details-wrapper hidden">
                     <div class="home-details-header-texts">
                         <h3>
                             What are you looking for?
@@ -117,6 +117,40 @@
 
                     </form>
                 </div>
+                <div class="budget-wrapper hidden">
+                    <div class="budget-header-texts">
+                        <h3>
+                            What are you looking for?
+                        </h3>
+                        <p>Please select which type of home you are interested in.</p>
+                    </div>
+                    <form action="" class="budget-form">
+                        <div class="budget-radio-button budget-radio-button-active ">
+                            <input hidden type="radio" id="first" checked>
+                            <span class="custom-radio custom-radio-unchecked"></span>
+                            <label class="budget-label" for="first">$250,000 - $300,000</label>
+                        </div>
+                        <div class="budget-radio-button ">
+                            <input hidden type="radio" id="first" checked>
+                            <span class="custom-radio custom-radio-unchecked"></span>
+                            <label class="budget-label" for="first">$250,000 - $300,000</label>
+                        </div>
+                        <div class="budget-radio-button ">
+                            <input hidden type="radio" id="first" checked>
+                            <span class="custom-radio custom-radio-unchecked"></span>
+                            <label class="budget-label" for="first">$250,000 - $300,000</label>
+                        </div>
+                        <div class="budget-radio-button ">
+                            <input hidden type="radio" id="first" checked>
+                            <span class="custom-radio custom-radio-unchecked"></span>
+                            <label class="budget-label" for="first">$250,000 - $300,000</label>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="hidden">
+                    Completed
+                </div>
             </div>
         </div>
         <div class="next-and-prev-buttons">
@@ -125,5 +159,6 @@
         </div>
     </div>
 </div>
+<script src="script.js"></script>
 </body>
 </html>

@@ -167,6 +167,8 @@ p {
 
 .content {
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* CONTACT PAGE*/
@@ -307,6 +309,73 @@ p {
     border: 0.15rem solid var(--CircleBackgroundColor);
 }
 
+/*Budget Form*/
+.budget-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.budget-header-texts {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 1rem;
+}
+
+.budget-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.budget-radio-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    padding: 2rem 2rem;
+    border-radius: 1rem;
+    gap: 0.6rem;
+}
+
+.budget-radio-button-active {
+    border: 2px solid var(--CircleBackgroundColor);
+
+}
+
+.budget-label {
+    font-weight: 500;
+}
+
+.custom-radio {
+    width: 1.7rem;
+    height: 1.7rem;
+    background: var(--CircleBackgroundColor);
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-radio-unchecked {
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.custom-radio::after {
+    content: "";
+    width: 40%;
+    height: 40%;
+    background: white;
+    position: absolute;
+    border-radius: 50%;
+}
 
 /* Next Step */
 .btn-next-step {
@@ -395,6 +464,15 @@ p {
         display: flex;
         flex-direction: column;
     }
+
+    /*Budget Form*/
+    .budget-form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 /* Medium */
@@ -409,7 +487,7 @@ p {
         max-width: 100%;
         width: 100%;
         border-radius: 0;
-        padding: 0;
+        padding: 1rem 0;
     }
 
     .form-header-texts {
@@ -448,24 +526,36 @@ p {
     .radio-button {
         max-width: 70%;
     }
+
+    /*Budget Form*/
+    .budget-form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+    }
 }
 
 
 /* Desktop */
 @media screen and (min-width: 769px) and (max-width: 992px) {
     .form {
-        max-width: 80%;
+        max-width: 90%;
+        padding: 1rem 3rem;
     }
 
     .input-image {
         width: 1.5rem;
+    }
+
+    /*Budget*/
+    .budget-radio-button {
     }
 }
 
 /* Large Desktops */
 @media screen and (min-width: 993px) and (max-width: 1200px) {
     .form {
-        max-width: 70%;
+        max-width: 80%;
     }
 
     .input-image {
@@ -476,6 +566,7 @@ p {
 @media screen and (min-width: 1201px) and (max-width: 1400px) {
     .form {
         max-width: 60%;
+        padding: 1rem 3rem;
     }
 
     .input-image {
