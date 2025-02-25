@@ -33,6 +33,7 @@
 
 .form {
     max-width: 50%;
+    min-height: 735px;
     border-radius: 3rem;
     background-color: var(--FormBackgroundColor);
     display: flex;
@@ -281,12 +282,15 @@ p {
     grid-template-rows: 1fr 1fr;
     grid-template-columns:  1fr 1fr;
     width: 100%;
+    min-height: 220px;
     gap: 0.5rem;
+    box-sizing: border-box;
 }
 
 .radio-button {
     width: 100%;
     height: 100%;
+    min-width:302px ;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -294,6 +298,10 @@ p {
     border-radius: 0.7rem;
     gap: 0.7rem;
     cursor: pointer;
+    border: 0.20rem solid transparent;
+}
+.radio-active {
+    border-color: var(--CircleBackgroundColor);
 }
 
 .radio-button > label {
@@ -305,9 +313,6 @@ p {
     width: 4rem;
 }
 
-.radio-active {
-    border: 0.15rem solid var(--CircleBackgroundColor);
-}
 
 /*Budget Form*/
 .budget-wrapper {
@@ -389,7 +394,9 @@ p {
     font-size: 1rem;
     cursor: pointer;
 }
-
+.btn-next-step:disabled {
+    background-color: red;
+}
 .btn-next-step:active {
     background-color: #3867c5;
 }
@@ -603,3 +610,12 @@ p {
     min-width: 50%;
   }
 } */
+@keyframes autofill {
+    from {}
+    to {}
+}
+
+input:-webkit-autofill {
+    animation-name: autofill;
+    animation-duration: 1ms;
+}

@@ -21,27 +21,26 @@
         <div class="content-wrapper">
             <div class="form-header-progress-wrapper">
                 <div class="form-header-progress">
-                    <div class="progress-step in-process">
+                    <div id="person-details-step" class="progress-step in-process">
                         <span class="circle">1</span>
                         <span class="circle-line"></span>
                     </div>
-                    <div class="progress-step ">
+                    <div id="home-details-step" class="progress-step ">
                         <span class="circle">2</span>
                         <span class="circle-line"></span>
                     </div>
-
-                    <div class="progress-step ">
+                    <div id="budget-progress-bar" class="progress-step ">
                         <span class="circle">3</span>
                         <span class="circle-line"></span>
                     </div>
-                    <div class="progress-step last-step ">
+                    <div id="last-step-progress-bar" class="progress-step last-step ">
                         <span class="circle">4</span>
                     </div>
                 </div>
                 <hr class="divider"/>
             </div>
             <div class="content">
-                <div class="contact-details-wrapper ">
+                <div id="contact_details" class="contact-details-wrapper ">
                     <div class="contact-details-info">
                         <h3>Contact Details</h3>
                         <p>
@@ -54,7 +53,7 @@
                             <div class="contact-input-group">
                                 <label for="name">Name</label>
                                 <div class="contact-input">
-                                    <input id="name" placeholder="Levan Asanoghli" type="text" class="input"/>
+                                    <input name="contact_name" id="name" placeholder="Levan Asanoghli" type="text" class="input"/>
                                     <img class="input-image" src="imgs/user.png" alt="">
                                 </div>
                                 <span class="error-message name-error hidden">Incorrect Name</span>
@@ -86,7 +85,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="home-details-wrapper hidden">
+                <div id="home-details" class="home-details-wrapper hidden">
                     <div class="home-details-header-texts">
                         <h3>
                             What are you looking for?
@@ -97,27 +96,27 @@
                         <div class="radio-button radio-active" id="apartment-radio">
                             <img class="radio-image" src="imgs/apartment.png" alt="">
                             <label for="apartment">Apartment</label>
-                            <input hidden type="radio" id="apartment" value="World" name="home-type"/>
+                            <input hidden type="radio" id="apartment" value="Apartment" name="home-type"/>
                         </div>
                         <div class="radio-button" id="townhouse-radio">
                             <img class="radio-image" src="imgs/townhouse.png" alt="">
                             <label for="townhouse">Townhouse</label>
-                            <input hidden type="radio" id="townhouse" value="World" name="home-type"/>
+                            <input hidden type="radio" id="townhouse" value="Townhouse" name="home-type"/>
                         </div>
                         <div class="radio-button" id="condo-radio">
                             <img class="radio-image" src="imgs/condo.png" alt="">
                             <label for="condo">Condo</label>
-                            <input hidden type="radio" id="condo" value="World" name="home-type"/>
+                            <input hidden type="radio" id="condo" value="Condo" name="home-type"/>
                         </div>
                         <div class="radio-button" id="house-radio">
                             <img class="radio-image" src="imgs/house.png" alt="">
                             <label for="house">House</label>
-                            <input hidden type="radio" id="house" value="World" name="home-type"/>
+                            <input hidden type="radio" id="house" value="House" name="home-type"/>
                         </div>
 
                     </form>
                 </div>
-                <div class="budget-wrapper hidden">
+                <div id="budget-details" class="budget-wrapper hidden">
                     <div class="budget-header-texts">
                         <h3>
                             What are you looking for?
@@ -130,17 +129,17 @@
                             <span class="custom-radio custom-radio-unchecked"></span>
                             <label class="budget-label" for="first">$250,000 - $300,000</label>
                         </div>
-                        <div class="budget-radio-button ">
+                        <div class="budget-radio-button">
                             <input hidden type="radio" id="first" checked>
                             <span class="custom-radio custom-radio-unchecked"></span>
                             <label class="budget-label" for="first">$250,000 - $300,000</label>
                         </div>
-                        <div class="budget-radio-button ">
+                        <div class="budget-radio-button">
                             <input hidden type="radio" id="first" checked>
                             <span class="custom-radio custom-radio-unchecked"></span>
                             <label class="budget-label" for="first">$250,000 - $300,000</label>
                         </div>
-                        <div class="budget-radio-button ">
+                        <div class="budget-radio-button">
                             <input hidden type="radio" id="first" checked>
                             <span class="custom-radio custom-radio-unchecked"></span>
                             <label class="budget-label" for="first">$250,000 - $300,000</label>
@@ -148,13 +147,13 @@
 
                     </form>
                 </div>
-                <div class="hidden">
+                <div class="hidden" id="last-step">
                     Completed
                 </div>
             </div>
         </div>
-        <div class="next-and-prev-buttons">
-            <button class="btn-prev-step">Previus step</button>
+        <div class="next-and-prev-buttons" style="justify-content: flex-end">
+            <button class="btn-prev-step hidden">Previus step</button>
             <button class="btn-next-step">Next Step</button>
         </div>
     </div>
