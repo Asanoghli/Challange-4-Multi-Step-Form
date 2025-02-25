@@ -82,15 +82,24 @@ const steps = [
 ]
 let currentStepIndex = 0;
 const IsFirstStepValid = function (){
-    return multiStepInfo.name && multiStepInfo.email && multiStepInfo.location && multiStepInfo.phoneNumber;
-}
-const ShowErrors = function (){
-    let allKeys = Object.keys(multiStepInfo);
-    console.log(multiStepInfo[allKeys[0]]);
+    let data = {name : elements.details.name.value, email : elements.details.email.value, phone : elements.details.phone.value, location : elements.details.location.value};
+    let isValid =  Boolean(data.name.length && data.email.length && data.location.length && data.phone.length);
 
+    return {isValid,data};
+}
+const ShowErrors = function (showErrors){
+    if(!showErrors){
+        Array.from(document.getElementsByClassName('error-message')).forEach((el) => {
+            el.classList.remove('hidden');
+        })
+        return;
+    }
+
+    let allKeys = Object.keys(multiStepInfo);
     for(let i = 0; i < allKeys.length; i++){
         let errorInputElementSpan = document.querySelector(`.${allKeys[i]}-error`);
-        if(multiStepInfo[allKeys[i]]){ // if value is NULL or NAN or Undefined or ''
+
+        if(multiStepInfo[allKeys[i]].length){ // if value is NOT -  NULL or NAN or Undefined or ''
             if(errorInputElementSpan)
             errorInputElementSpan.classList.add('hidden');
         }
@@ -103,47 +112,7 @@ const ShowErrors = function (){
 }
 
 // #region Details Form Events
-elements.details.name.addEventListener('focusout', (event) => {
-    let nameValue = event.target.value;
-    if (nameValue.length < ValidationRules.MIN_NAME_LENGTH) {
-        elements.details.name_error.classList.remove('hidden');
-    } else {
-        elements.details.name_error.classList.add('hidden');
-        multiStepInfo.name = nameValue;
-    }
-})
-elements.details.email.addEventListener('focusout', (event) => {
-    let isEmailValid = event.target.value.length >= ValidationRules.MIN_EMAIL_LENGTH && ValidationRules.EMAIL_REGEX.test(event.target.value);
-    if (isEmailValid) {
-        elements.details.email_error.classList.add('hidden');
-        multiStepInfo.email = event.target.value;
 
-    } else {
-        elements.details.email_error.classList.remove('hidden');
-    }
-
-})
-elements.details.phone.addEventListener('focusout', (event) => {
-    let phone = event.target.value;
-    let isValid = ValidationRules.PHONE_NUMBER_FORMAT_REGEX.test(phone);
-    if (isValid) {
-        multiStepInfo.phone = phone;
-        elements.details.phone_error.classList.add('hidden');
-    } else {
-        elements.details.phone_error.classList.remove('hidden');
-    }
-})
-elements.details.location.addEventListener('focusout', (event) => {
-    let location = event.target.value;
-    let isValid = location.length > ValidationRules.LOCATION_MIN_LENGTH;
-
-    if (isValid) {
-        multiStepInfo.location = location;
-        elements.details.location_error.classList.add('hidden');
-    } else {
-        elements.details.location_error.classList.remove('hidden');
-    }
-})
 elements.home_details_elements.home_radio_buttons.forEach((element => {
     element.addEventListener('click', function (event) {
         elements.home_details_elements.home_radio_buttons.forEach((tempElement) => {
@@ -158,10 +127,15 @@ elements.home_details_elements.home_radio_buttons.forEach((element => {
 
 
 elements.button_next_step.addEventListener('click', (event) => {
-    let isValid = IsFirstStepValid();
-    if(!isValid){
-        alert('WOrld')
-        ShowErrors();
+    let response = IsFirstStepValid();
+    Object.assign(multiStepInfo,response.data);
+
+    if(response.isValid){
+        console.log(multiStepInfo);
+        ShowErrors(false);
+    }
+    else{
+        ShowErrors(true);
         return;
     }
 
