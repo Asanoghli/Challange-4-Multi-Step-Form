@@ -140,12 +140,9 @@ p {
     background-color: #3a7dff;
     color: white;
 }
-
 .in-process.progress-step > .circle-line {
     background-color: var(--CircleAndLineDefaultColor);
 }
-
-
 .in-process > .circle-line::before {
     width: 50%;
     height: 100%;
@@ -156,26 +153,31 @@ p {
     border-radius: 1rem;
     left: 0;
 }
-
 .in-process .circle-line::before {
     animation: progress-line-anim 1s linear;
 }
-
-@keyframes progress-line-anim {
-    from {
-        width: 0;
-    }
-    to {
-        width: 50%;
-    }
+.in-process-reversed .circle-line::before{
+    background-color: var(--CircleBackgroundColor);
+    border-radius: 1rem;
+    right: 0;
+    display: block;
+    content: '';
+    height: 100%;
+    width: 0;
+    animation: prev-button-anim 1s linear;
 }
-@keyframes progress-line-completed-anim {
-    from{
-        width: 0;
-    }
-    to{
-        width: 50%;
-    }
+.completed-reversed .circle-line::before{
+    display: block;
+    height: 100%;
+    content: '';
+    width: 50%;
+    border-radius: 1rem;
+    background-color: var(--CircleBackgroundColor);
+    animation : completed-reversed 1s linear;
+}
+.completed-reversed > .circle {
+    background-color: #3a7dff;
+    color: white;
 }
 .completed{
     width: 100%;
@@ -637,44 +639,36 @@ p {
         width: 1.5rem;
     }
 }
-
-/* @media screen and (min-width: 741px) and (max-width: 1080px) {
-  .container {
-    padding: 2rem 1rem;
-    height: 100%;
-  }
-  .form {
-    max-width: 100%;
-  }
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-  }
-  .input-image {
-    max-width: 5%;
-  }
-}
-@media screen and (min-width: 1080px) and (max-width: 1280px) {
-  .form {
-    min-width: 90%;
-  }
-  .input-image {
-    width: 8%;
-  }
-}
-@media screen and (min-width: 1281px) and (max-width: 1650px) {
-  .form {
-    min-width: 50%;
-  }
-} */
-@keyframes autofill {
+@keyframes progress-line-anim {
     from {
+        width: 0;
     }
     to {
+        width: 50%;
     }
 }
+@keyframes progress-line-completed-anim {
+    from{
+        width: 0;
+    }
+    to{
+        width: 50%;
+    }
+}
+@keyframes  prev-button-anim {
+    from{
+        width: 50%;
+    }
+    to{
+        width: 0;
+    }
+}
+@keyframes completed-reversed{
 
-input:-webkit-autofill {
-    animation-name: autofill;
-    animation-duration: 1ms;
+    from{
+        width: 100%;
+    }
+    to{
+        width: 50%;
+    }
 }

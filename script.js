@@ -153,13 +153,14 @@ const MoveToNextStep = function () {
 
     // Hide Current Form/Content
     inProcessStep.progressBar.classList.add('completed');
+    inProcessStep.progressBar.classList.remove('in-process');
     inProcessStep.element.classList.add('hidden');
 
     // Open Next Step/Form
     if (!nextSteps.length) return;
 
     let newCurrentForm = nextSteps.shift();
-
+    newCurrentForm.progressBar.classList.remove('in-process-reversed')
     let timeOut = setTimeout(function () {
         newCurrentForm.progressBar.classList.add('in-process');
     }, 1000)
@@ -179,13 +180,18 @@ const MoveToPreviusStep = function () {
     let currentStep = steps[currentStepIndex];
 
     currentStep.element.classList.add('hidden');
-    prevStep.element.classList.remove('hidden');
 
     currentStep.progressBar.classList.remove('in-process');
-    prevStep.progressBar.classList.remove('completed');
-    prevStep.progressBar.classList.add('in-process');
+    currentStep.progressBar.classList.add('in-process-reversed');
 
-    if (currentStepIndex === 0 || currentStepIndex-1 ===0){
+    prevStep.element.classList.remove('hidden');
+
+    setTimeout(() => {
+        prevStep.progressBar.classList.remove('completed');
+    }, 1000)
+    prevStep.progressBar.classList.add('completed-reversed');
+
+    if (currentStepIndex === 0 || currentStepIndex - 1 === 0) {
         elements.button_prev_step.classList.add('hidden');
         elements.button_prev_step.parentElement.style.justifyContent = 'flex-end';
         elements.button_next_step.classList.remove('hidden');
@@ -241,5 +247,6 @@ elements.button_next_step.addEventListener('click', (event) => {
 })
 elements.button_prev_step.addEventListener('click', function () {
     MoveToPreviusStep();
+    let currentStep = steps[currentStepIndex];
 })
 // #endregion
