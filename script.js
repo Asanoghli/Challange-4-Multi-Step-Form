@@ -157,7 +157,10 @@ const MoveToNextStep = function () {
     if (!nextSteps.length) return;
 
     let newCurrentForm = nextSteps.shift();
-    newCurrentForm.progressBar.classList.add('in-process');
+
+    let timeOut = setTimeout(function () {
+        newCurrentForm.progressBar.classList.add('in-process');
+    },1000)
     newCurrentForm.element.classList.remove('hidden');
 
     // Mark All Previus Steps as Completed

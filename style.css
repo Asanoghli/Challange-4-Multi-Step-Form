@@ -139,6 +139,7 @@ p {
     background-color: var(--CircleAndLineDefaultColor);
 }
 
+
 .in-process > .circle-line::before {
     width: 50%;
     height: 100%;
@@ -150,9 +151,60 @@ p {
     left: 0;
 }
 
-.completed.progress-step > .circle,
-.completed.progress-step > .circle-line {
+.in-process .circle-line::before {
+    animation: progress-line-anim 1s linear;
+}
+
+@keyframes progress-line-anim {
+    from {
+        width: 0;
+    }
+    to {
+        width: 50%;
+    }
+}
+@keyframes progress-line-completed-anim {
+    from{
+        width: 0;
+    }
+    to{
+        width: 50%;
+    }
+}
+.completed{
+    width: 100%;
+    position: relative;
+}
+.completed .circle-line {
+    width: 100%;
+    overflow: hidden;
+}
+.completed .circle-line::before {
+    content: '';
+    width: 50%;
+    height: 100%;
+    background-color:var(--CircleBackgroundColor);
+    position: absolute;
+    border-radius: 1rem;
+    animation: progress-line-completed-anim 1s linear;
+    left: 50%;
+}
+.completed .circle-line::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 60%;
+    background-color: var(--CircleBackgroundColor);
+    display: flex;
+    height: 100%;
+    z-index: -1;
+    border-radius: 2rem;
+}
+.completed.progress-step > .circle{
     background-color: #3a7dff;
+    color: white;
+}
+.completed.progress-step > .circle-line {
     color: white;
 }
 
@@ -290,7 +342,7 @@ p {
 .radio-button {
     width: 100%;
     height: 100%;
-    min-width:302px ;
+    min-width: 302px;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -300,6 +352,7 @@ p {
     cursor: pointer;
     border: 0.20rem solid transparent;
 }
+
 .radio-active {
     border-color: var(--CircleBackgroundColor);
 }
@@ -394,9 +447,11 @@ p {
     font-size: 1rem;
     cursor: pointer;
 }
+
 .btn-next-step:disabled {
     background-color: red;
 }
+
 .btn-next-step:active {
     background-color: #3867c5;
 }
@@ -611,8 +666,10 @@ p {
   }
 } */
 @keyframes autofill {
-    from {}
-    to {}
+    from {
+    }
+    to {
+    }
 }
 
 input:-webkit-autofill {
