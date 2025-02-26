@@ -22,18 +22,23 @@
     --HeaderTextsFontWeight: 500;
     --LightShadowForContainerAndInputs: 0 0 0.5rem rgba(0, 0, 0, 0.1);
 }
-
-.container {
+body{
+    min-height: 100dvh;
+    background-color: var(--ContainerBackgroundColor);
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--ContainerBackgroundColor);
-    height: 100dvh;
+}
+.container {
+    display: flex;
+    width: 100%;
+    max-height: 90%;
+    justify-content: center;
+    align-items: center;
 }
 
 .form {
     max-width: 50%;
-    min-height: 735px;
     border-radius: 3rem;
     background-color: var(--FormBackgroundColor);
     display: flex;
@@ -42,6 +47,7 @@
     align-items: center;
     padding: 2rem 6rem;
     gap: 2.5rem;
+
 }
 
 /* Header Here */
@@ -193,7 +199,7 @@ p {
     content: '';
     position: absolute;
     left: 0;
-    width: 60%;
+    width: 52%;
     background-color: var(--CircleBackgroundColor);
     display: flex;
     height: 100%;
