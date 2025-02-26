@@ -41,7 +41,9 @@ const elements = {
         mainContent: document.getElementById('last-step'),
         progressBar: document.getElementById('last-step-progress-bar'),
     },
-    button_next_step: document.getElementsByClassName('btn-next-step')[0],
+
+    button_next_step: document.getElementById('btn-next-step'),
+    button_prev_step: document.getElementById('btn-prev-step'),
     contact_details: document.getElementById('contact_details'),
     step_process_one: document.getElementById('step-one'),
     step_process_two: document.getElementById('step-two'),
@@ -160,21 +162,58 @@ const MoveToNextStep = function () {
 
     let timeOut = setTimeout(function () {
         newCurrentForm.progressBar.classList.add('in-process');
-    },1000)
+    }, 1000)
     newCurrentForm.element.classList.remove('hidden');
 
     // Mark All Previus Steps as Completed
-    completedSteps.forEach(step=>{
+    completedSteps.forEach(step => {
         step.progressBar.classList.remove('in-process');
         step.element.classList.add('hidden');
     })
     currentStepIndex++;
 }
-// #region Details Form Events
-elements.contactDetailsForm.phone.addEventListener('keypress', (event) => {
-    if (!Number(event.key) || elements.contactDetailsForm.phone.value.length > 9)
-        event.preventDefault();
-});
+const MoveToPreviusStep = function () {
+
+
+    let prevStep = steps[currentStepIndex - 1];
+    let currentStep = steps[currentStepIndex];
+
+    currentStep.element.classList.add('hidden');
+    prevStep.element.classList.remove('hidden');
+
+    currentStep.progressBar.classList.remove('in-process');
+    prevStep.progressBar.classList.remove('completed');
+    prevStep.progressBar.classList.add('in-process');
+
+    if (currentStepIndex === 0 || currentStepIndex-1 ===0){
+        elements.button_prev_step.classList.add('hidden');
+        elements.button_prev_step.parentElement.style.justifyContent = 'flex-end';
+        elements.button_next_step.classList.remove('hidden');
+    }
+    currentStepIndex--;
+}
+let ShowPreviusButton = function () {
+    if (currentStepIndex > 0) {
+        elements.button_next_step.parentElement.style.justifyContent = 'space-between'
+        elements.button_prev_step.classList.remove('hidden');
+    } else {
+        elements.button_next_step.parentElement.style.justifyContent = 'flex-end'
+        elements.button_prev_step.classList.add('hidden');
+    }
+}
+let DisableNextButtonOnLastStep = function () {
+    if (currentStepIndex === steps.length - 1) {
+        elements.button_next_step.classList.add('hidden');
+        elements.button_next_step.parentElement.style.justifyContent = 'flex-start'
+    } else {
+        elements.button_next_step.classList.remove('hidden');
+        elements.button_next_step.parentElement.style.justifyContent = 'flex-end'
+
+    }
+}
+
+
+// #region Events
 elements.home_details_elements.home_radio_buttons.forEach((element => {
     element.addEventListener('click', function (event) {
         elements.home_details_elements.home_radio_buttons.forEach((tempElement) => {
@@ -186,6 +225,10 @@ elements.home_details_elements.home_radio_buttons.forEach((element => {
         event.preventDefault();
     })
 }))
+elements.contactDetailsForm.phone.addEventListener('keypress', (event) => {
+    if (!Number(event.key) || elements.contactDetailsForm.phone.value.length > 9)
+        event.preventDefault();
+});
 elements.button_next_step.addEventListener('click', (event) => {
     let isCurrentFormValid = ValidateCurrentForm();
 
@@ -193,6 +236,10 @@ elements.button_next_step.addEventListener('click', (event) => {
     if (currentStepIndex === steps.length - 1) return;
 
     MoveToNextStep();
-
+    DisableNextButtonOnLastStep();
+    ShowPreviusButton();
+})
+elements.button_prev_step.addEventListener('click', function () {
+    MoveToPreviusStep();
 })
 // #endregion

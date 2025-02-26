@@ -442,7 +442,7 @@ p {
 }
 
 /* Next Step */
-.btn-next-step {
+.btn-next-prev {
     align-self: flex-end;
     background-color: var(--CircleBackgroundColor);
     color: white;
@@ -454,11 +454,7 @@ p {
     cursor: pointer;
 }
 
-.btn-next-step:disabled {
-    background-color: red;
-}
-
-.btn-next-step:active {
+.btn-next-prev:active {
     background-color: #3867c5;
 }
 
