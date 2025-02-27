@@ -90,6 +90,7 @@ const ValidationRulesForContactDetailsMap = new Map([
         required: true, fieldName: 'location', hasMinLength: true, minLength: 2, errorMessage: 'Name is required'
     }],])
 
+// Functions
 const Validator = function (validationRules, value) {
     let response = {errorMessage: '', isValid: false};
     if (validationRules.required) {
@@ -146,7 +147,6 @@ const RemoveAllProcessClasses = function (element) {
 
 
 }
-
 const ShowError = function (fieldName, errorMessage) {
     let errorSpan = document.getElementsByClassName(`${fieldName}-error`)[0];
     errorSpan.innerText = errorMessage;
@@ -185,65 +185,60 @@ const MoveToNextStep = function () {
     })
     currentStepIndex++;
 }
-const MoveToPreviusStep = function () {
-    let prevStep = steps[currentStepIndex - 1];
-    let currentStep = steps[currentStepIndex];
+const MoveToPreviousStep = function () {
+    let hasPrevStep = currentStepIndex > 0;
+    if (hasPrevStep) {
+        let prevStep = steps[currentStepIndex - 1];
+        let currentStep = steps[currentStepIndex];
 
-    currentStep.element.classList.add('hidden');
-    currentStep.progressBar.classList.add('in-process-reversed');
+        currentStep.element.classList.add('hidden');
+        currentStep.progressBar.classList.add('in-process-reversed');
 
-    currentStep.progressBar.classList.remove('in-process');
-    currentStep.progressBar.classList.remove('completed');
-    currentStep.progressBar.classList.remove('completed-reversed');
+        currentStep.progressBar.classList.remove('in-process');
+        currentStep.progressBar.classList.remove('completed');
+        currentStep.progressBar.classList.remove('completed-reversed');
 
-    if(currentStepIndex === steps.length-1){
+        prevStep.element.classList.remove('hidden');
+
+        if (currentStepIndex === steps.length - 1) {
             RemoveAllProcessClasses(currentStep)
             RemoveAllProcessClasses(prevStep)
             prevStep.progressBar.classList.add('completed-reversed');
-    }
-    else{
-        setTimeout(() => {
-            RemoveAllProcessClasses(currentStep)
-            RemoveAllProcessClasses(prevStep)
-            prevStep.progressBar.classList.add('completed-reversed');
-        }, 1000)
-    }
-    // prevStep.progressBar.classList.add('completed-reversed');
-
-    if (currentStepIndex === 0 || currentStepIndex - 1 === 0) {
-        elements.button_prev_step.classList.add('hidden');
-        elements.button_prev_step.parentElement.style.justifyContent = 'flex-end';
-        elements.button_next_step.classList.remove('hidden');
-    }
-
-    currentStepIndex--;
-}
-let ShowPreviusButton = function () {
-    if (currentStepIndex > 0) {
-        elements.button_next_step.parentElement.style.justifyContent = 'space-between'
-        elements.button_prev_step.classList.remove('hidden');
-    } else {
-        elements.button_next_step.parentElement.style.justifyContent = 'flex-end'
-        elements.button_prev_step.classList.add('hidden');
+        } else {
+            setTimeout(() => {
+                RemoveAllProcessClasses(currentStep)
+                RemoveAllProcessClasses(prevStep)
+                prevStep.progressBar.classList.add('completed-reversed');
+            }, 1000)
+        }
+        // prevStep.progressBar.classList.add('completed-reversed');
+        currentStepIndex--;
     }
 }
-const ShowNextButton = function () {
-    if(currentStepIndex < steps.length-1) {
+const ShowNextAndPrevButtons = function () {
+    switch (currentStepIndex) {
+        case 0:
+            elements.button_next_step.classList.remove('hidden');
+            elements.button_prev_step.classList.add('hidden');
+            elements.button_prev_step.parentElement.style.justifyContent = 'flex-end';
+            break;
+
+        case steps.length - 1 :
+            elements.button_next_step.classList.add('hidden');
+            elements.button_prev_step.classList.remove('hidden');
+            elements.button_prev_step.parentElement.style.justifyContent = 'flex-start';
+            break;
+
+        default:
+            elements.button_next_step.classList.remove('hidden');
+            elements.button_prev_step.classList.remove('hidden');
+            elements.button_prev_step.parentElement.style.justifyContent = 'space-between';
+            break;
     }
 }
-let DisableNextButtonOnLastStep = function () {
-    if (currentStepIndex === steps.length - 1) {
-        elements.button_next_step.classList.add('hidden');
-        elements.button_next_step.parentElement.style.justifyContent = 'flex-start'
-    } else {
-        elements.button_next_step.classList.remove('hidden');
-        elements.button_next_step.parentElement.style.justifyContent = 'flex-end'
+// End of Functions
 
-    }
-}
-
-
-// #region Events
+// Events
 elements.home_details_elements.home_radio_buttons.forEach((element => {
     element.addEventListener('click', function (event) {
         elements.home_details_elements.home_radio_buttons.forEach((tempElement) => {
@@ -266,12 +261,11 @@ elements.button_next_step.addEventListener('click', (event) => {
     if (currentStepIndex === steps.length - 1) return;
 
     MoveToNextStep();
-    DisableNextButtonOnLastStep();
-    ShowPreviusButton();
+    ShowNextAndPrevButtons();
 })
 elements.button_prev_step.addEventListener('click', function () {
-    MoveToPreviusStep();
-    ShowNextButton();
+    MoveToPreviousStep();
+    ShowNextAndPrevButtons();
     let currentStep = steps[currentStepIndex];
 })
-// #endregion
+// End of Events
