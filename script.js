@@ -138,6 +138,15 @@ const ValidateCurrentForm = function () {
     }
     return true;
 }
+const RemoveAllProcessClasses = function (element) {
+    element.progressBar.classList.remove('in-process');
+    element.progressBar.classList.remove('in-process-reversed');
+    element.progressBar.classList.remove('completed');
+    element.progressBar.classList.remove('completed-reversed');
+
+
+}
+
 const ShowError = function (fieldName, errorMessage) {
     let errorSpan = document.getElementsByClassName(`${fieldName}-error`)[0];
     errorSpan.innerText = errorMessage;
@@ -187,17 +196,18 @@ const MoveToPreviusStep = function () {
     currentStep.progressBar.classList.remove('completed');
     currentStep.progressBar.classList.remove('completed-reversed');
 
-
-    setTimeout(() => {
-        currentStep.progressBar.classList.remove('completed-reversed');
-        currentStep.progressBar.classList.remove('in-process-reversed');
-
-        prevStep.progressBar.classList.add('completed-reversed');
-        prevStep.progressBar.classList.remove('completed');
-
-
-
-    }, 1000)
+    if(currentStepIndex === steps.length-1){
+            RemoveAllProcessClasses(currentStep)
+            RemoveAllProcessClasses(prevStep)
+            prevStep.progressBar.classList.add('completed-reversed');
+    }
+    else{
+        setTimeout(() => {
+            RemoveAllProcessClasses(currentStep)
+            RemoveAllProcessClasses(prevStep)
+            prevStep.progressBar.classList.add('completed-reversed');
+        }, 1000)
+    }
     // prevStep.progressBar.classList.add('completed-reversed');
 
     if (currentStepIndex === 0 || currentStepIndex - 1 === 0) {
