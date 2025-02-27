@@ -169,33 +169,43 @@ const MoveToNextStep = function () {
     // Mark All Previus Steps as Completed
     completedSteps.forEach(step => {
         step.progressBar.classList.remove('in-process');
+        step.progressBar.classList.remove('in-process-reversed');
+        step.progressBar.classList.remove('completed-reversed');
+
         step.element.classList.add('hidden');
     })
     currentStepIndex++;
 }
 const MoveToPreviusStep = function () {
-
-
     let prevStep = steps[currentStepIndex - 1];
     let currentStep = steps[currentStepIndex];
 
     currentStep.element.classList.add('hidden');
-
-    currentStep.progressBar.classList.remove('in-process');
     currentStep.progressBar.classList.add('in-process-reversed');
 
-    prevStep.element.classList.remove('hidden');
+    currentStep.progressBar.classList.remove('in-process');
+    currentStep.progressBar.classList.remove('completed');
+    currentStep.progressBar.classList.remove('completed-reversed');
+
 
     setTimeout(() => {
+        currentStep.progressBar.classList.remove('completed-reversed');
+        currentStep.progressBar.classList.remove('in-process-reversed');
+
+        prevStep.progressBar.classList.add('completed-reversed');
         prevStep.progressBar.classList.remove('completed');
+
+
+
     }, 1000)
-    prevStep.progressBar.classList.add('completed-reversed');
+    // prevStep.progressBar.classList.add('completed-reversed');
 
     if (currentStepIndex === 0 || currentStepIndex - 1 === 0) {
         elements.button_prev_step.classList.add('hidden');
         elements.button_prev_step.parentElement.style.justifyContent = 'flex-end';
         elements.button_next_step.classList.remove('hidden');
     }
+
     currentStepIndex--;
 }
 let ShowPreviusButton = function () {
@@ -205,6 +215,10 @@ let ShowPreviusButton = function () {
     } else {
         elements.button_next_step.parentElement.style.justifyContent = 'flex-end'
         elements.button_prev_step.classList.add('hidden');
+    }
+}
+const ShowNextButton = function () {
+    if(currentStepIndex < steps.length-1) {
     }
 }
 let DisableNextButtonOnLastStep = function () {
@@ -247,6 +261,7 @@ elements.button_next_step.addEventListener('click', (event) => {
 })
 elements.button_prev_step.addEventListener('click', function () {
     MoveToPreviusStep();
+    ShowNextButton();
     let currentStep = steps[currentStepIndex];
 })
 // #endregion
