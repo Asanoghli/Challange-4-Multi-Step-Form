@@ -260,6 +260,22 @@ const ShowNextAndPrevButtons = function () {
             break;
     }
 }
+const PassValidatetDataToObject = function (){
+    switch (currentStepIndex) {
+        case 0:
+            multiStepInfo.name = elements.contactDetailsForm.name.value;
+            multiStepInfo.email = elements.contactDetailsForm.email.value;
+            multiStepInfo.phone = elements.contactDetailsForm.phone.value;
+            multiStepInfo.location = elements.contactDetailsForm.location.value;
+            break;
+        case 1:
+            // Need To Code this section
+            break;
+
+        default:
+            break;
+    }
+}
 // End of Functions
 
 // Events
@@ -282,6 +298,8 @@ elements.button_next_step.addEventListener('click', (event) => {
     let isCurrentFormValid = ValidateCurrentForm();
 
     if (!isCurrentFormValid) return;
+    PassValidatetDataToObject();
+    console.log(multiStepInfo)
     if (currentStepIndex === steps.length - 1) return;
 
     MoveToNextStep();
