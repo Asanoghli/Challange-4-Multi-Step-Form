@@ -172,6 +172,8 @@ const MoveToNextStep = function () {
     newCurrentForm.progressBar.classList.remove('in-process-reversed')
     let timeOut = setTimeout(function () {
         newCurrentForm.progressBar.classList.add('in-process');
+        CompleteAndUncompleteAllProcessAfterTimeout(true)
+
     }, 1000)
     newCurrentForm.element.classList.remove('hidden');
 
@@ -184,6 +186,27 @@ const MoveToNextStep = function () {
         step.element.classList.add('hidden');
     })
     currentStepIndex++;
+}
+const CompleteAndUncompleteAllProcessAfterTimeout = function (isCompleted){
+    if(isCompleted){
+        let previousSteps = steps.filter((item,index)=>index < currentStepIndex);
+        previousSteps.forEach(step=>{
+            step.progressBar.classList.add('completed');
+        })
+    }
+    else{
+
+        let previousSteps = steps.filter((item,index)=>index > currentStepIndex || index === steps.length - 1);
+        previousSteps.forEach(step=>{
+            step.progressBar.classList.remove('completed');
+            step.progressBar.classList.remove('in-process');
+
+            step.progressBar.classList.remove('in-process-reversed');
+            step.progressBar.classList.remove('completed-reversed');
+
+        })
+    }
+
 }
 const MoveToPreviousStep = function () {
     let hasPrevStep = currentStepIndex > 0;
@@ -209,6 +232,7 @@ const MoveToPreviousStep = function () {
                 RemoveAllProcessClasses(currentStep)
                 RemoveAllProcessClasses(prevStep)
                 prevStep.progressBar.classList.add('completed-reversed');
+                CompleteAndUncompleteAllProcessAfterTimeout(false)
             }, 1000)
         }
         // prevStep.progressBar.classList.add('completed-reversed');

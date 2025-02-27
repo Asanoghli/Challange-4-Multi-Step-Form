@@ -448,7 +448,7 @@ p {
     border-radius: 50%;
 }
 
-/* Next Step */
+/* Next/Prev Buttons */
 .btn-next-prev {
     align-self: flex-end;
     background-color: var(--CircleBackgroundColor);
@@ -465,14 +465,23 @@ p {
     background-color: #3867c5;
 }
 
-/* Prev Step*/
 .next-and-prev-buttons {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
 }
+#btn-prev-step{
+    background-color: transparent;
+    border: 0.1rem solid var(--CircleBackgroundColor);
+    color: var(--CircleBackgroundColor);
+    font-weight: 400;
+}
+#btn-prev-step:active,#btn-prev-step:hover {
+    background-color: var(--CircleBackgroundColor);
+    color: white;
 
+}
 .btn-prev-step {
     background: none;
     border: 1px solid var(--CircleBackgroundColor);
