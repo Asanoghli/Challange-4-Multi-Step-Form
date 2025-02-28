@@ -1,8 +1,5 @@
 'use strict';
 
-const multiStepInfo = {
-    name: '', email: '', phone: '', location: '', homeType: '', budgetId: -1
-}
 const elements = {
     contactDetailsForm: {
         name: document.getElementById('name'),
@@ -50,6 +47,16 @@ const elements = {
     budget_details: document.getElementById('budget-details'),
     last_step: document.getElementById('last-step'),
     budget_radio_buttons: document.querySelectorAll('.budget-radio-button'),
+}
+console.log(elements.home_details_elements);
+console.log(elements.budget_radio_buttons);
+const multiStepInfo = {
+    name: '',
+    email: '',
+    phone: '',
+    location: '',
+    homeType: elements.home_details_elements.home_radio_buttons[0].getElementsByTagName('input')[0].value,
+    budgetId: elements.budget_radio_buttons[0].getElementsByTagName('input')[0].value
 }
 const steps = [{
 
@@ -285,11 +292,19 @@ elements.home_details_elements.home_radio_buttons.forEach((element => {
             if (tempElement !== element) tempElement.classList.remove('radio-active')
             else tempElement.classList.add('radio-active');
         })
-        let radioValue = element.getElementsByTagName('input')[0];
+        let radioValue = event.currentTarget.getElementsByTagName('input')[0].value;
+        multiStepInfo.homeType = radioValue;
         if (radioValue && radioValue.value) multiStepInfo.homeType = radioValue.value;
         event.preventDefault();
     })
 }))
+elements.budget_radio_buttons.forEach(el=>{
+    el.addEventListener('click', function (event) {
+        elements.budget_radio_buttons.forEach((temp)=>temp.classList.remove('budget-radio-button-active'));
+        event.currentTarget.classList.add('budget-radio-button-active');
+        multiStepInfo.budgetId = event.currentTarget.getElementsByTagName('input')[0].value;
+    })
+})
 elements.contactDetailsForm.phone.addEventListener('keypress', (event) => {
     if (!Number(event.key) || elements.contactDetailsForm.phone.value.length > 9)
         event.preventDefault();

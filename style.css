@@ -412,10 +412,14 @@ p {
     padding: 2rem 2rem;
     border-radius: 1rem;
     gap: 0.6rem;
+    border: 2px solid transparent;
+}
+.budget-radio-button, .budget-radio-button *{
+    cursor: pointer;
 }
 
 .budget-radio-button-active {
-    border: 2px solid var(--CircleBackgroundColor);
+    border-color: var(--CircleBackgroundColor);
 
 }
 
