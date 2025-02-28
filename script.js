@@ -48,9 +48,7 @@ const elements = {
     last_step: document.getElementById('last-step'),
     budget_radio_buttons: document.querySelectorAll('.budget-radio-button'),
 }
-console.log(elements.home_details_elements);
-console.log(elements.budget_radio_buttons);
-const multiStepInfo = {
+let multiStepInfo = {
     name: '',
     email: '',
     phone: '',
@@ -194,17 +192,16 @@ const MoveToNextStep = function () {
     })
     currentStepIndex++;
 }
-const CompleteAndUncompleteAllProcessAfterTimeout = function (isCompleted){
-    if(isCompleted){
-        let previousSteps = steps.filter((item,index)=>index < currentStepIndex);
-        previousSteps.forEach(step=>{
+const CompleteAndUncompleteAllProcessAfterTimeout = function (isCompleted) {
+    if (isCompleted) {
+        let previousSteps = steps.filter((item, index) => index < currentStepIndex);
+        previousSteps.forEach(step => {
             step.progressBar.classList.add('completed');
         })
-    }
-    else{
+    } else {
 
-        let previousSteps = steps.filter((item,index)=>index > currentStepIndex || index === steps.length - 1);
-        previousSteps.forEach(step=>{
+        let previousSteps = steps.filter((item, index) => index > currentStepIndex || index === steps.length - 1);
+        previousSteps.forEach(step => {
             step.progressBar.classList.remove('completed');
             step.progressBar.classList.remove('in-process');
 
@@ -267,16 +264,47 @@ const ShowNextAndPrevButtons = function () {
             break;
     }
 }
-const PassValidatetDataToObject = function (){
+const SaveDataIntoLocalStorage = function () {
+    localStorage.setItem('my-data', JSON.stringify(multiStepInfo))
+}
+const FillObjectFromLocalStorage = function () {
+    let data = localStorage.getItem('my-data');
+    if(!data || data.length ===0) return;
+
+    multiStepInfo = JSON.parse(data);
+    elements.contactDetailsForm.phone.value = multiStepInfo.phone;
+    elements.contactDetailsForm.location.value = multiStepInfo.location;
+    elements.contactDetailsForm.email.value = multiStepInfo.email;
+    elements.contactDetailsForm.name.value = multiStepInfo.name;
+
+    elements.home_details_elements.home_radio_buttons.forEach((element) => {
+        let isSame = element.getElementsByTagName('input')[0].value === multiStepInfo.homeType;
+        if (isSame) {
+            element.classList.add('radio-active')
+        } else {
+            element.classList.remove('radio-active')
+        }
+    })
+    elements.budget_radio_buttons.forEach((element) => {
+        let isSame = element.getElementsByTagName('input')[0].value === multiStepInfo.budgetId;
+        if (isSame) {
+            element.classList.add('budget-radio-button-active')
+        } else {
+            element.classList.remove('budget-radio-button-active')
+        }
+    })
+}
+const PassValidatetDataToObject = function () {
     switch (currentStepIndex) {
         case 0:
-            multiStepInfo.name = elements.contactDetailsForm.name.value;
-            multiStepInfo.email = elements.contactDetailsForm.email.value;
-            multiStepInfo.phone = elements.contactDetailsForm.phone.value;
-            multiStepInfo.location = elements.contactDetailsForm.location.value;
+            multiStepInfo.name = document.getElementById('name').value;
+            multiStepInfo.email = document.getElementById('email').value;
+            multiStepInfo.phone = document.getElementById('phone').value;
+            multiStepInfo.location = document.getElementById('location').value;
             break;
         case 1:
-            // Need To Code this section
+            break;
+        case 2:
             break;
 
         default:
@@ -298,9 +326,9 @@ elements.home_details_elements.home_radio_buttons.forEach((element => {
         event.preventDefault();
     })
 }))
-elements.budget_radio_buttons.forEach(el=>{
+elements.budget_radio_buttons.forEach(el => {
     el.addEventListener('click', function (event) {
-        elements.budget_radio_buttons.forEach((temp)=>temp.classList.remove('budget-radio-button-active'));
+        elements.budget_radio_buttons.forEach((temp) => temp.classList.remove('budget-radio-button-active'));
         event.currentTarget.classList.add('budget-radio-button-active');
         multiStepInfo.budgetId = event.currentTarget.getElementsByTagName('input')[0].value;
     })
@@ -313,8 +341,9 @@ elements.button_next_step.addEventListener('click', (event) => {
     let isCurrentFormValid = ValidateCurrentForm();
 
     if (!isCurrentFormValid) return;
+
     PassValidatetDataToObject();
-    console.log(multiStepInfo)
+    SaveDataIntoLocalStorage();
     if (currentStepIndex === steps.length - 1) return;
 
     MoveToNextStep();
@@ -326,3 +355,5 @@ elements.button_prev_step.addEventListener('click', function () {
     let currentStep = steps[currentStepIndex];
 })
 // End of Events
+FillObjectFromLocalStorage();
+
