@@ -341,9 +341,10 @@ elements.contactDetailsForm.phone.addEventListener('keypress', (event) => {
     let isBackSpace = event.key === 'Backspace';
     let isDigit = !isNaN(event.key);
     let isZero = event.key ==='0'
+    let isFirstDigitFive = event.key === '5'
     let isnNineCharacter = elements.contactDetailsForm.phone.value.length === 9;
 
-    if ((isBackSpace || isDigit || isZero)  && !isnNineCharacter){
+    if ((isBackSpace || isDigit || isZero || isFirstDigitFive)  && !isnNineCharacter){
     }
     else{
         event.preventDefault();
