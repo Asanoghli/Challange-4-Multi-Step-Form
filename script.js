@@ -290,8 +290,11 @@ const FillObjectFromLocalStorage = function () {
         let isSame = element.getElementsByTagName('input')[0].value === multiStepInfo.budgetId;
         if (isSame) {
             element.classList.add('budget-radio-button-active')
+            element.getElementsByTagName('span')[0].classList.remove('custom-radio-unchecked')
         } else {
             element.classList.remove('budget-radio-button-active')
+            element.getElementsByTagName('span')[0].classList.add('custom-radio-unchecked')
+
         }
     })
 }
