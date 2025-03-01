@@ -338,8 +338,16 @@ elements.budget_radio_buttons.forEach(el => {
     })
 })
 elements.contactDetailsForm.phone.addEventListener('keypress', (event) => {
-    if (!Number(event.key) || elements.contactDetailsForm.phone.value.length > 9)
+    let isBackSpace = event.key === 'Backspace';
+    let isDigit = !isNaN(event.key);
+    let isZero = event.key ==='0'
+    let isnNineCharacter = elements.contactDetailsForm.phone.value.length === 9;
+
+    if ((isBackSpace || isDigit || isZero)  && !isnNineCharacter){
+    }
+    else{
         event.preventDefault();
+    }
 });
 elements.button_next_step.addEventListener('click', (event) => {
     let isCurrentFormValid = ValidateCurrentForm();
