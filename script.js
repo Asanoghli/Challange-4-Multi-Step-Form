@@ -332,8 +332,12 @@ elements.home_details_elements.home_radio_buttons.forEach((element => {
 }))
 elements.budget_radio_buttons.forEach(el => {
     el.addEventListener('click', function (event) {
-        elements.budget_radio_buttons.forEach((temp) => temp.classList.remove('budget-radio-button-active'));
+        elements.budget_radio_buttons.forEach((temp) => {
+            temp.classList.remove('budget-radio-button-active');
+            temp.getElementsByTagName('span')[0].classList.add('custom-radio-unchecked');
+        });
         event.currentTarget.classList.add('budget-radio-button-active');
+        event.currentTarget.getElementsByTagName('span')[0].classList.remove('custom-radio-unchecked');
         multiStepInfo.budgetId = event.currentTarget.getElementsByTagName('input')[0].value;
     })
 })
