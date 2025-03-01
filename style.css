@@ -22,19 +22,22 @@
     --HeaderTextsFontWeight: 500;
     --LightShadowForContainerAndInputs: 0 0 0.5rem rgba(0, 0, 0, 0.1);
 }
-body{
+
+body {
     min-height: 100dvh;
     background-color: var(--ContainerBackgroundColor);
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .container {
     display: flex;
     width: 100%;
     max-height: 90%;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .form {
@@ -140,9 +143,11 @@ p {
     background-color: #3a7dff;
     color: white;
 }
+
 .in-process.progress-step > .circle-line {
     background-color: var(--CircleAndLineDefaultColor);
 }
+
 .in-process > .circle-line::before {
     width: 50%;
     height: 100%;
@@ -153,10 +158,12 @@ p {
     border-radius: 1rem;
     left: 0;
 }
+
 .in-process .circle-line::before {
     animation: progress-line-anim 1s linear;
 }
-.in-process-reversed .circle-line::before{
+
+.in-process-reversed .circle-line::before {
     background-color: var(--CircleBackgroundColor);
     border-radius: 1rem;
     right: 0;
@@ -167,42 +174,49 @@ p {
     animation: prev-button-anim 1s linear;
 
 }
-.in-process-reversed .circle{
+
+.in-process-reversed .circle {
     background-color: var(--CircleBackgroundColor);
     color: white;
 }
-.completed-reversed .circle-line::before{
+
+.completed-reversed .circle-line::before {
     display: block;
     height: 100%;
     content: '';
     width: 50%;
     border-radius: 1rem;
     background-color: var(--CircleBackgroundColor);
-    animation : completed-reversed 1s linear;
+    animation: completed-reversed 1s linear;
 }
+
 .completed-reversed > .circle {
     background-color: #3a7dff;
     color: white;
 }
-.completed{
+
+.completed {
     width: 100%;
     position: relative;
 }
+
 .completed .circle-line {
     width: 100%;
     overflow: hidden;
 }
+
 .completed .circle-line::before {
     content: '';
     width: 50%;
     height: 100%;
-    background-color:var(--CircleBackgroundColor);
+    background-color: var(--CircleBackgroundColor);
     position: absolute;
     border-radius: 1rem;
     animation: progress-line-completed-anim 1s linear;
     left: 50%;
 }
-.completed .circle-line::after{
+
+.completed .circle-line::after {
     content: '';
     position: absolute;
     left: 0;
@@ -213,10 +227,12 @@ p {
     z-index: -1;
     border-radius: 2rem;
 }
-.completed.progress-step > .circle{
+
+.completed.progress-step > .circle {
     background-color: #3a7dff;
     color: white;
 }
+
 .completed.progress-step > .circle-line {
     color: white;
 }
@@ -414,7 +430,8 @@ p {
     gap: 0.6rem;
     border: 2px solid transparent;
 }
-.budget-radio-button, .budget-radio-button *{
+
+.budget-radio-button, .budget-radio-button * {
     cursor: pointer;
 }
 
@@ -475,17 +492,20 @@ p {
     justify-content: space-between;
     width: 100%;
 }
-#btn-prev-step{
+
+#btn-prev-step {
     background-color: transparent;
     border: 0.1rem solid var(--CircleBackgroundColor);
     color: var(--CircleBackgroundColor);
     font-weight: 400;
 }
-#btn-prev-step:active,#btn-prev-step:hover {
+
+#btn-prev-step:active, #btn-prev-step:hover {
     background-color: var(--CircleBackgroundColor);
     color: white;
 
 }
+
 .btn-prev-step {
     background: none;
     border: 1px solid var(--CircleBackgroundColor);
@@ -497,7 +517,45 @@ p {
     cursor: pointer;
 }
 
+.last-step-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
 
+.check-and-thank-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 1.5rem;
+}
+
+.check-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.check-wrapper img {
+    max-width: 20%;
+}
+.check-and-thank-wrapper h3{
+    font-size: 1.6rem;
+}
+.last-step-wrapper p{
+    text-align: justify-all;
+    line-height: 1.7rem;
+    opacity: 0.6;
+    font-weight: 500;
+}
+.btn-submit{
+    align-self: center;
+}
 /* Small */
 @media screen and (max-width: 576px) {
     /* .form-header-texts h1 {
@@ -509,7 +567,7 @@ p {
     } */
     .container {
         padding: 0;
-        height: 100%;
+        min-height: 100%;
         width: 100%;
         overflow: hidden;
     }
@@ -517,6 +575,7 @@ p {
     .form {
         max-width: 100%;
         min-width: 100%;
+        height: 100%;
         /* padding: 1.5rem 0.8rem; */
         padding: 1rem 0;
         border-radius: 0;
@@ -657,6 +716,7 @@ p {
         width: 1.5rem;
     }
 }
+
 @keyframes progress-line-anim {
     from {
         width: 0;
@@ -665,28 +725,31 @@ p {
         width: 50%;
     }
 }
-@keyframes progress-line-completed-anim {
-    from{
-        width: 0;
-    }
-    to{
-        width: 50%;
-    }
-}
-@keyframes  prev-button-anim {
-    from{
-        width: 50%;
-    }
-    to{
-        width: 0;
-    }
-}
-@keyframes completed-reversed{
 
-    from{
+@keyframes progress-line-completed-anim {
+    from {
+        width: 0;
+    }
+    to {
+        width: 50%;
+    }
+}
+
+@keyframes prev-button-anim {
+    from {
+        width: 50%;
+    }
+    to {
+        width: 0;
+    }
+}
+
+@keyframes completed-reversed {
+
+    from {
         width: 100%;
     }
-    to{
+    to {
         width: 50%;
     }
 }

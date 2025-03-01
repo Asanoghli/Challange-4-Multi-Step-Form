@@ -41,6 +41,7 @@ const elements = {
 
     button_next_step: document.getElementById('btn-next-step'),
     button_prev_step: document.getElementById('btn-prev-step'),
+    button_submit : document.getElementById('btn-submit'),
     contact_details: document.getElementById('contact_details'),
     step_process_one: document.getElementById('step-one'),
     step_process_two: document.getElementById('step-two'),
@@ -311,6 +312,9 @@ const PassValidatetDataToObject = function () {
             break;
     }
 }
+const ClearLocalStorage = function () {
+    localStorage.clear();
+}
 // End of Functions
 
 // Events
@@ -353,6 +357,10 @@ elements.button_prev_step.addEventListener('click', function () {
     MoveToPreviousStep();
     ShowNextAndPrevButtons();
     let currentStep = steps[currentStepIndex];
+})
+elements.button_submit.addEventListener('click', (event) => {
+    alert(`Name : ${multiStepInfo.name}\nEmail : ${multiStepInfo.email}\nPhone : ${multiStepInfo.phone}\mLocation : ${multiStepInfo.location}\nHomeType : ${multiStepInfo.homeType}\nBudgetId : ${multiStepInfo.budgetId} are Submitting :)`);
+    ClearLocalStorage();
 })
 // End of Events
 FillObjectFromLocalStorage();
