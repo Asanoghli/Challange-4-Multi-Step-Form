@@ -316,6 +316,7 @@ p {
     justify-content: space-between;
     align-items: center;
     border-radius: 2rem;
+    padding: 0.5rem 1rem;
     box-shadow: var(--LightShadowForContainerAndInputs);
 }
 
